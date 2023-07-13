@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { makeProof, verifyProof } from './client';
+import { connectWallet, getCurrentWalletConnected } from './WalletConnect';
 import ReactJson from 'react-json-view';
 import punkImg from './images/punk.png';
 import './App.css';
 
+
 const address = "0xBB17C136AbA99c03Ea7cc04d61105D8870DdDD3C";
 const hash = "15816790041894035629812969348918251598434796263086720583354417805817603431710"
-
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const [signals, setSignals] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [latestSecretTry, setLatestSecret] = useState("");
+  const [address, setAddress] = useState("");
 
   let wasmFile = "http://localhost:3000/main.wasm";
   let zkeyFile = "http://localhost:3000/main_0001.zkey";
@@ -58,9 +60,21 @@ function App() {
     setSecret(e.target.value);
   };
 
+  useEffect(() => {
+    getCurrentWalletConnected(setAddress);
+  }, []);
+
   return (
     <div className='App'>
       <div className='content'>
+        <div>
+          <button className="walletbutton" onClick={() => connectWallet(setAddress)}>
+            {address ?
+              "Connected" :
+              "Connect Wallet"
+            }
+          </button>
+        </div>
         <div>
           <h1>
             Mint a ZK Punk NFT!
