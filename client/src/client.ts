@@ -4,10 +4,14 @@ import { BigNumber, BigNumberish } from "ethers";
 const snarkjs = require("snarkjs");
 
 export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) => {
+  console.log("a")
   const wasmFile = await fetch("https://zk-nft-jade.vercel.app/main.wasm").then(res => res.arrayBuffer());
+  console.log("b");
   const wasmCalc = await builder(wasmFile);
+  console.log("c");
 
   const wtns = await wasmCalc.calculateWTNSBin(_proofInput, 0);
+  console.log("d");
 
   const { proof, publicSignals } = await snarkjs.groth16.prove("https://zk-nft-jade.vercel.app/main_0001.zkey", wtns);
 
