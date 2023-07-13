@@ -1,13 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { makeProof, verifyProof } from './client';
-import { connectWallet, getCurrentWalletConnected } from './WalletConnect';
+import { makeProof, verifyProof, generateCall } from './client';
+import { connectWallet, getCurrentWalletConnected, mint, getTotalMinted, signer } from './WalletConnect';
 import ReactJson from 'react-json-view';
 import punkImg from './images/punk.png';
 import './App.css';
 
 
-const address = "0xBB17C136AbA99c03Ea7cc04d61105D8870DdDD3C";
 const hash = "15816790041894035629812969348918251598434796263086720583354417805817603431710"
 
 
@@ -18,6 +17,7 @@ function App() {
   const [signals, setSignals] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [latestSecretTry, setLatestSecret] = useState("");
+  const [totalMinted, setTotalMinted] = useState("");
   const [address, setAddress] = useState("");
 
   let wasmFile = "http://localhost:3000/main.wasm";
@@ -60,9 +60,19 @@ function App() {
     setSecret(e.target.value);
   };
 
+  const handleMint = async () => {
+    var res = await generateCall(JSON.parse(proof), signals);
+    await mint(res);
+    console.log(res);
+  };
+
   useEffect(() => {
     getCurrentWalletConnected(setAddress);
   }, []);
+
+  useEffect(() => {
+    getTotalMinted(setTotalMinted);
+  }, [signer]);
 
   return (
     <div className='App'>
@@ -83,8 +93,11 @@ function App() {
         <div className='imgcontainer'>
           <img className='punkimg' src={punkImg} />
         </div>
-        <h2>0/300</h2>
+        <h2>{totalMinted}/300</h2>
         <div>Total Minted!</div>
+        {
+          isValid && <button onClick={() => handleMint()} className="button-glitch">Mint !</button>
+        }
         <div className='mt5'>
           Answer the following question! Mint the NFT with proving that you know the answer and without revealing it.
         </div>
