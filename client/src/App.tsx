@@ -20,9 +20,9 @@ function App() {
   const [totalMinted, setTotalMinted] = useState("");
   const [address, setAddress] = useState("");
 
-  let wasmFile = "http://localhost:3000/main.wasm";
-  let zkeyFile = "http://localhost:3000/main_0001.zkey";
-  let verificationKey = "http://localhost:3000/verification_key.json";
+  let wasmFile = "https://zk-nft-jade.vercel.app/main.wasm";
+  let zkeyFile = "https://zk-nft-jade.vercel.app/main_0001.zkey";
+  let verificationKey = "https://zk-nft-jade.vercel.app/verification_key.json";
 
 
 
