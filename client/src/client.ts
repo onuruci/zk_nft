@@ -9,7 +9,8 @@ export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) 
   console.log("b");
   const wasmCalc = await builder(wasmFile);
   console.log("c");
-
+  console.log("input: ", _proofInput);
+  console.log(wasmCalc);
   const wtns = await wasmCalc.calculateWTNSBin(_proofInput, 0);
   console.log("d");
 
