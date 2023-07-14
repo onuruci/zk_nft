@@ -14,7 +14,16 @@ export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) 
   const wtns = await wasmCalc.calculateWTNSBin(_proofInput, 0);
   console.log("d");
 
-  const { proof, publicSignals } = await snarkjs.groth16.prove("https://zk-nft-jade.vercel.app/main_0001.zkey", wtns);
+  const res = await fetch("https://zk-nft-jade.vercel.app/main_0001.zkey");
+  let buf = await res.arrayBuffer();
+  let { proof, publicSignals } = await snarkjs.groth16.prove(Buffer.from(buf), wtns);
+
+  //const { proof, publicSignals } = await snarkjs.groth16.prove(await fetch("https://zk-nft-jade.vercel.app/main_0001.zkey"), wtns);
+
+  console.log("e");
+
+  console.log("Proof: ", proof);
+  console.log("Public Signals:  ", publicSignals);
 
   return { proof, publicSignals };
 };
