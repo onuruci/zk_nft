@@ -15,7 +15,10 @@ export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) 
   console.log("d");
 
   const res = await fetch("https://zk-nft-jade.vercel.app/main_0001.zkey");
+  console.log("e");
   let buf = await res.arrayBuffer();
+  console.log("f");
+  console.log("Buf: ", buf);
   let { proof, publicSignals } = await snarkjs.groth16.prove(Buffer.from(buf), wtns);
 
   //const { proof, publicSignals } = await snarkjs.groth16.prove(await fetch("https://zk-nft-jade.vercel.app/main_0001.zkey"), wtns);
