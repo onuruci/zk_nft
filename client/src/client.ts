@@ -5,7 +5,7 @@ const snarkjs = require("snarkjs");
 
 export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) => {
   console.log("a")
-  const wasmFile = await fetch("https://zk-nft-jade.vercel.app/main.wasm").then(res => res.arrayBuffer());
+  const wasmFile = await fetch("https://zk-nft-server-5905033477fe.herokuapp.com/main.wasm").then(res => res.arrayBuffer());
   console.log("b");
   const wasmCalc = await builder(wasmFile);
   console.log("c");
@@ -14,14 +14,14 @@ export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) 
   const wtns = await wasmCalc.calculateWTNSBin(_proofInput, 0);
   console.log("d");
 
-  const res = await fetch("https://zk-nft-jade.vercel.app/main_0001.zkey");
+  const res = await fetch("https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey");
   console.log("e");
   let buf = await res.arrayBuffer();
   console.log("f");
   console.log("Buf: ", buf);
   let { proof, publicSignals } = await snarkjs.groth16.prove(Buffer.from(buf), wtns);
 
-  //const { proof, publicSignals } = await snarkjs.groth16.prove(await fetch("https://zk-nft-jade.vercel.app/main_0001.zkey"), wtns);
+  //const { proof, publicSignals } = await snarkjs.groth16.prove(await fetch("https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey"), wtns);
 
   console.log("e");
 

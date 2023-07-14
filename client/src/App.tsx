@@ -20,9 +20,9 @@ function App() {
   const [totalMinted, setTotalMinted] = useState("");
   const [address, setAddress] = useState("");
 
-  let wasmFile = "https://zk-nft-jade.vercel.app/main.wasm";
-  let zkeyFile = "https://zk-nft-jade.vercel.app/main_0001.zkey";
-  let verificationKey = "https://zk-nft-jade.vercel.app/verification_key.json";
+  let wasmFile = "https://zk-nft-server-5905033477fe.herokuapp.com/main.wasm";
+  let zkeyFile = "https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey";
+  let verificationKey = "https://zk-nft-server-5905033477fe.herokuapp.com/verification_key.json";
 
 
 
