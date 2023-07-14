@@ -318,8 +318,7 @@ function flatArray(a) {
 }
 
 function fnvHash(str) {
-    let uint64_max = BigInt(1);
-    uint64_max = BigInt(2) ** BigInt(64);
+    let uint64_max = BigInt(18446744073709551616n);
     let hash = BigInt("0xCBF29CE484222325");
     for (var i = 0; i < str.length; i++) {
 	hash ^= BigInt(str[i].charCodeAt());
