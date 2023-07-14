@@ -19,7 +19,7 @@ export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) 
   let buf = await res.arrayBuffer();
   console.log("f");
   console.log("Buf: ", buf);
-  let { proof, publicSignals } = await snarkjs.groth16.prove(Buffer.from(buf), wtns);
+  let { proof, publicSignals } = await snarkjs.groth16.prove("https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey", wtns);
 
   //const { proof, publicSignals } = await snarkjs.groth16.prove(await fetch("https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey"), wtns);
 
