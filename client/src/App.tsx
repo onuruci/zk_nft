@@ -108,6 +108,12 @@ function App() {
           Contracts run on Avalanche network because it is a lot cheaper. This will be your coolest NFT on Avalanche
         </div>
         <div className='mt3'>
+          NFT Contract: 0xC9a1E7aFDBe56Bf6D7Da7253958C9A3Aa7C3CA8a
+        </div>
+        <div className='mt3'>
+          Verifier Contract:  0x9a39D7518661c9019F1203cfee50FE91A7e3e923
+        </div>
+        <div className='mt3'>
           What message did Satoshi insert into the genesis block ?
         </div>
         <div className='mt3'>
