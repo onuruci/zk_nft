@@ -49,6 +49,8 @@ function App() {
     verifyProof(verificationKey, publicSignals, proof).then((_isValid) => {
       console.log("isValid");
       setIsValid(_isValid);
+      setLatestSecret("a");
+      console.log(signer);
     });
     console.log(5);
     // } catch {
@@ -77,7 +79,7 @@ function App() {
 
   useEffect(() => {
     getTotalMinted(setTotalMinted);
-  }, [signer]);
+  }, []);
 
   return (
     <div className='App'>
@@ -96,7 +98,7 @@ function App() {
           </h1>
         </div>
         <div className='imgcontainer'>
-          <img className='punkimg' src={punkImg} />
+          <img className='punkimg' src={punkImg} alt="punkimg" />
         </div>
         <h2>{totalMinted}/300</h2>
         <div>Total Minted!</div>

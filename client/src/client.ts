@@ -1,6 +1,4 @@
 import builder from './witness_calculator';
-import { BigNumber, BigNumberish } from "ethers";
-
 
 export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) => {
   console.log("a")

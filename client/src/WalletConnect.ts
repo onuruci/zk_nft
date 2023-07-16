@@ -1,5 +1,3 @@
-import React from "react";
-import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import ABI from "./utils/ABI.json";
 
