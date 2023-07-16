@@ -1,7 +1,6 @@
 import builder from './witness_calculator';
 import { BigNumber, BigNumberish } from "ethers";
 
-const snarkjs = window.snarkjs;
 
 export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) => {
   console.log("a")
