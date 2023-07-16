@@ -38,27 +38,19 @@ function App() {
     let proofInput = { secret, address, hash };
     console.log(proofInput);
 
-
-    console.log(1);
-    let { proof, publicSignals } = await makeProof(proofInput, wasmFile, zkeyFile);
-    console.log(1);
-    setProof(JSON.stringify(proof, null, 2));
-    console.log(3);
-    setSignals(JSON.stringify(publicSignals, null, 2));
-    console.log(4);
-    verifyProof(verificationKey, publicSignals, proof).then((_isValid) => {
-      console.log("isValid");
-      setIsValid(_isValid);
-      // to be changed
-      setLatestSecret("a");
-    });
-    console.log(5);
-    // } catch {
-    //   setProof("");
-    //   setSecret("");
-    //   setIsValid(false);
-    //   setLatestSecret(secretStr);
-    // }
+    try {
+      let { proof, publicSignals } = await makeProof(proofInput, wasmFile, zkeyFile);
+      setProof(JSON.stringify(proof, null, 2));
+      setSignals(JSON.stringify(publicSignals, null, 2));
+      verifyProof(verificationKey, publicSignals, proof).then((_isValid) => {
+        setIsValid(_isValid);
+      });
+    } catch {
+      setProof("");
+      setSecret("");
+      setIsValid(false);
+      setLatestSecret(secretStr);
+    }
 
 
   };
