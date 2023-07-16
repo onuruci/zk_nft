@@ -6,9 +6,6 @@ export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) 
 
   const wtns = await wasmCalc.calculateWTNSBin(_proofInput, 0);
 
-  const res = await fetch("https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey");
-  let buf = await res.arrayBuffer();
-
   let { proof, publicSignals } = await snarkjs.groth16.prove("https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey", wtns);
 
   return { proof, publicSignals };

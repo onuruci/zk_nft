@@ -71,8 +71,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getTotalMinted(setTotalMinted);
-  }, []);
+    if (address) {
+      getTotalMinted(setTotalMinted);
+      setAddress(address);
+    }
+  }, [address]);
 
   return (
     <div className='App'>
