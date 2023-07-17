@@ -1,12 +1,12 @@
 import builder from './witness_calculator';
 
-export const makeProof = async (_proofInput: any, _wasm: string, _zkey: string) => {
-  const wasmFile = await fetch("https://zk-nft-server-5905033477fe.herokuapp.com/main.wasm").then(res => res.arrayBuffer());
+export const makeProof = async (_proofInput: any) => {
+  const wasmFile = await fetch(`${process.env.PUBLIC_URL}/main.wasm`).then(res => res.arrayBuffer());
   const wasmCalc = await builder(wasmFile);
 
   const wtns = await wasmCalc.calculateWTNSBin(_proofInput, 0);
 
-  let { proof, publicSignals } = await snarkjs.groth16.prove("https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey", wtns);
+  let { proof, publicSignals } = await snarkjs.groth16.prove(`${process.env.PUBLIC_URL}/main_0001.zkey`, wtns);
 
   return { proof, publicSignals };
 };

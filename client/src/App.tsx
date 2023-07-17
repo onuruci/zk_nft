@@ -20,9 +20,7 @@ function App() {
   const [totalMinted, setTotalMinted] = useState("");
   const [address, setAddress] = useState("");
 
-  let wasmFile = "https://zk-nft-server-5905033477fe.herokuapp.com/main.wasm";
-  let zkeyFile = "https://zk-nft-server-5905033477fe.herokuapp.com/main_0001.zkey";
-  let verificationKey = "https://zk-nft-server-5905033477fe.herokuapp.com/verification_key.json";
+  let verificationKey = `${process.env.PUBLIC_URL}/verification_key.json`;
 
 
 
@@ -39,7 +37,7 @@ function App() {
     console.log(proofInput);
 
     try {
-      let { proof, publicSignals } = await makeProof(proofInput, wasmFile, zkeyFile);
+      let { proof, publicSignals } = await makeProof(proofInput);
       setProof(JSON.stringify(proof, null, 2));
       setSignals(JSON.stringify(publicSignals, null, 2));
       verifyProof(verificationKey, publicSignals, proof).then((_isValid) => {
